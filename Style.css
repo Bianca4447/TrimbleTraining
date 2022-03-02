@@ -1,0 +1,26 @@
+p{
+	color: blue;
+	font-size: 30px;
+	font-family: Arial;
+	align-content: center;
+}
+
+#describe{
+	font-size: 16pt;
+	width: 200px;
+	height: 200px;
+}
+
+body{
+	background: #ffffcc;
+	margin:0 auto;
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+
+button{
+	background: DodgerBlue;
+}
