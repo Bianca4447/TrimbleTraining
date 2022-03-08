@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'notes-app';
+  text = "text";
+  dateTest: Date = new Date(5,5,2000);
+  myValue : number = 10;
 }
