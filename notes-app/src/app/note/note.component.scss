@@ -1,0 +1,13 @@
+.notes-form {
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    justify-content: center;
+    .notes-div {
+        margin: 20px;
+        min-height: 300px;
+        vertical-align: middle;
+        justify-content: center;
+    }
+}
+

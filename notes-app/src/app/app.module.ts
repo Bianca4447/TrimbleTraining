@@ -6,6 +6,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
+import { MatOptionModule } from '@angular/material/core';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,8 @@ import { ToolsComponent } from './tools/tools.component';
 import { TestComponent } from './test/test.component';
 import { AddValuePipe } from './add-value.pipe';
 import { FilterComponent } from './filter/filter.component';
+import { AddNoteComponent } from './add-note/add-note.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -25,7 +28,9 @@ import { FilterComponent } from './filter/filter.component';
     ToolsComponent,
     TestComponent,
     AddValuePipe,
-    FilterComponent
+    FilterComponent,
+    AddNoteComponent,
+    HomeComponent
     
   ],
   imports: [
@@ -36,7 +41,8 @@ import { FilterComponent } from './filter/filter.component';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    MatOptionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

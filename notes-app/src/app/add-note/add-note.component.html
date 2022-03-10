@@ -1,0 +1,30 @@
+
+    <h1>Add a note </h1>
+        <form>
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput name="inputNote" placeholder="Enter note" [(ngModel)] = "title" required minlength="4"/>
+            </mat-form-field><br>
+
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput name="inputNote" placeholder="Enter description" [(ngModel)] = "description" required minlength="4"/>
+            </mat-form-field><br>
+
+            
+            <mat-form-field >
+                <mat-label>Choose a category </mat-label>
+                <mat-select *ngIf="categories" [(ngModel)]="selectedCategoryId">
+                    <mat-option *ngFor="let categ of categories" [value]="categ.id">
+                        {{categ.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-button color="primary" (click)="addNote()">Add</button>
+        
+    </form>
+    
+
+   
+
