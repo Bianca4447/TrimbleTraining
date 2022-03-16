@@ -1,29 +1,41 @@
+    <div class="main-container">
+       <h1>Add a note </h1>
+          <form class="form-input" [formGroup]="notesForm">
+            <label>Title</label>
+              <mat-form-field>
+                  <input matInput name="inputNote" placeholder="Enter note" formControlName = "title" required/>
+                  <mat-error *ngIf="titleValid?.invalid && (titleValid?.dirty || titleValid?.touched)" class="alert">
+                    *Title is required.
+                  </mat-error>
+              </mat-form-field>
 
-    <h1>Add a note </h1>
-        <form>
-            <mat-form-field>
-                <mat-label>Title</mat-label>
-                <input matInput name="inputNote" placeholder="Enter note" [(ngModel)] = "title" required minlength="4"/>
-            </mat-form-field><br>
+              <label>Description</label>
+              <mat-form-field>
+                  <textarea matInput name="inputDescription" placeholder="Enter description" formControlName = "description" required>
+                  </textarea>
+                  <mat-error *ngIf="descriptionValid?.invalid && (descriptionValid?.dirty || descriptionValid?.touched)" class="alert">
+                    *Description is required.
+                  </mat-error>
+              </mat-form-field>
 
-            <mat-form-field>
-                <mat-label>Description</mat-label>
-                <input matInput name="inputNote" placeholder="Enter description" [(ngModel)] = "description" required minlength="4"/>
-            </mat-form-field><br>
-
-            
-            <mat-form-field >
-                <mat-label>Choose a category </mat-label>
-                <mat-select *ngIf="categories" [(ngModel)]="selectedCategoryId">
-                    <mat-option *ngFor="let categ of categories" [value]="categ.id">
-                        {{categ.name}}
-                    </mat-option>
+              <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option *ngFor="let cat of categories" [value]="cat" >
+                    {{cat.name}}
+                  </mat-option>
                 </mat-select>
-            </mat-form-field>
+                <mat-error *ngIf="categoryValid?.invalid && (categoryValid?.dirty || categoryValid?.touched)" class="alert">
+                    *Category is required.
+                </mat-error>
+              </mat-form-field>
 
-            <button mat-button color="primary" (click)="addNote()">Add</button>
-        
-    </form>
+              <button mat-button disabled="notesForm.invalid" (click)="addNote()">Add</button>
+          
+      </form>
+</div>
+
+
     
 
    

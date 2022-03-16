@@ -4,8 +4,8 @@ import { AddNoteComponent } from './add-note/add-note.component';
 import { HomeComponent } from './home/home.component';
 
 const routes:Routes=[
-  { path: "add-note", component: AddNoteComponent},
   { path: "", component: HomeComponent, pathMatch:"full" },
+  { path: "add-note", component: AddNoteComponent},
   { path: '**', redirectTo: ''}
   
 ];

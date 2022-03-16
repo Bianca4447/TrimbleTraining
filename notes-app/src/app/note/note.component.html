@@ -1,6 +1,17 @@
-<div class="notes-form" >
-    <div *ngFor="let note of notes">
-        <mat-card class="notes-div" style="background: aquamarine;">
+<div class="note-container" >
+    <div>
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input
+                matInput
+                placeholder="Search"
+                [(ngModel)]="searchWord"
+                (input)="filterSearchWord()"
+            />
+            </mat-form-field>
+    </div>
+    <div class="note-div" *ngFor="let note of notes">
+        <mat-card class="card-note">
             <mat-card-header>	
                  {{note.title}} 
             </mat-card-header>
@@ -8,9 +19,26 @@
             <mat-card-content>
                 {{note.description}}
             </mat-card-content>  
-        </mat-card>        
+            <mat-card-actions>
+                <div>
+                  <button mat-icon-button><mat-icon>arrow_right_alt</mat-icon></button>
+                  <button mat-icon-button><mat-icon>star_half</mat-icon></button>
+                  <button mat-icon-button><mat-icon>done_outline</mat-icon></button>
+                  <button mat-icon-button (click)="editNote(note)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="deleteNote(note.id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </mat-card-actions>
+        </mat-card>       
     </div>
-    <mat-card class="add-note-card" routerLink="add-note" class="notes-div" style="background: aquamarine;">
-        <button mat-icon-button><mat-icon>add</mat-icon></button>
-     </mat-card>
+    <div class="note-div">
+        <mat-card routerLink="add-note" class="card-note">
+            <button mat-icon-button><mat-icon>+</mat-icon></button>
+        </mat-card>
+    </div>
 </div>
+
+
