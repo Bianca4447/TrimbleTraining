@@ -17,18 +17,19 @@
                     *Description is required.
                   </mat-error>
               </mat-form-field>
-
-              <mat-form-field appearance="fill">
-                <mat-label>Category</mat-label>
-                <mat-select formControlName="category">
-                  <mat-option *ngFor="let cat of categories" [value]="cat" >
-                    {{cat.name}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="categoryValid?.invalid && (categoryValid?.dirty || categoryValid?.touched)" class="alert">
-                    *Category is required.
-                </mat-error>
-              </mat-form-field>
+            
+                <mat-form-field appearance="fill">
+                  <mat-label>Category</mat-label>
+                  <mat-select formControlName="category">
+                    <mat-option *ngFor="let cat of categories" [value]="cat" >
+                      {{cat.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="categoryValid?.invalid && (categoryValid?.dirty || categoryValid?.touched)" class="alert">
+                      *Category is required.
+                  </mat-error>
+                </mat-form-field>
+            
 
               <button mat-button disabled="notesForm.invalid" (click)="addNote()">Add</button>
           
