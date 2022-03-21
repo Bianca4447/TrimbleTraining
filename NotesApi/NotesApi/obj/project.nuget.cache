@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "oPUadYu6kLEP1O359bwrDcF3KHNHdzCC+jnl7P8xGKvMWk3BtIPxkfL2jrqzLGa9UfxFWqtA14fjFX7tWM54Mg==",
+  "dgSpecHash": "WYtDUjmAtpwE+GLwrsZH98iEacZfshmFmz90XUwrjwUClbvxS7flnvcUD4V0Fe2ZsFrmoN8pMrvub74sQovHhg==",
   "success": true,
   "projectFilePath": "D:\\SchoolarshipTrimble\\TrimbleTraining\\NotesApi\\NotesApi\\NotesApi.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\biama\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\biama\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\biama\\.nuget\\packages\\swashbuckle.aspnetcore\\6.3.0\\swashbuckle.aspnetcore.6.3.0.nupkg.sha512",
+    "C:\\Users\\biama\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.3.0\\swashbuckle.aspnetcore.swagger.6.3.0.nupkg.sha512",
+    "C:\\Users\\biama\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.3.0\\swashbuckle.aspnetcore.swaggergen.6.3.0.nupkg.sha512",
+    "C:\\Users\\biama\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.3.0\\swashbuckle.aspnetcore.swaggerui.6.3.0.nupkg.sha512"
+  ],
   "logs": []
 }

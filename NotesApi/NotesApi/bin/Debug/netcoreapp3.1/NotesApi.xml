@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NotesApi</name>
+    </assembly>
+    <members>
+        <member name="M:NotesApi.Controllers.CategoriesController.GetCategories">
+            <summary>
+            Return list of categories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NotesApi.Controllers.CategoriesController.GetCategoryById(System.String)">
+            <summary>
+            Return category with a given id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NotesApi.Controllers.CategoriesController.CreateCategory(NotesApi.Models.Category)">
+            <summary>
+            Create a new category
+            </summary>
+            <param name="cat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NotesApi.Controllers.NotesController.GetNotes">
+            <summary>
+            Get list of notes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NotesApi.Controllers.NotesController.CreateNotes(NotesApi.Models.Note)">
+            <summary>
+            Create a new note
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
