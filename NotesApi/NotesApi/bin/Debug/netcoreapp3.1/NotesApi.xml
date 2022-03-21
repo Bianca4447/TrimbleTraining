@@ -24,10 +24,31 @@
             <param name="cat"></param>
             <returns></returns>
         </member>
+        <member name="M:NotesApi.Controllers.CategoriesController.DeleteCategoryById(System.String)">
+            <summary>
+            Delete a category with a given id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:NotesApi.Controllers.NotesController.GetNotes">
             <summary>
             Get list of notes
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NotesApi.Controllers.NotesController.GetNoteByOwnerId(System.Guid)">
+            <summary>
+            Return a note by ownerId 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NotesApi.Controllers.NotesController.GetNoteById(System.Guid)">
+            <summary>
+            Return a note by a given Id
+            </summary>
+            <param name="Id"></param>
             <returns></returns>
         </member>
         <member name="M:NotesApi.Controllers.NotesController.CreateNotes(NotesApi.Models.Note)">

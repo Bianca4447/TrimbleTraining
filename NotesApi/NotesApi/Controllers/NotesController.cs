@@ -19,6 +19,7 @@ namespace NotesApi.Controllers
         new Note { Id = Guid.NewGuid(), CategoryId = "1", OwnerId = Guid.NewGuid(), Title = "Fifth Note", Description = "Fifth Note Description" }
         };
 
+
         /// <summary>
         /// Get list of notes
         /// </summary>
@@ -30,6 +31,30 @@ namespace NotesApi.Controllers
         }
 
         /// <summary>
+        /// Return a note by ownerId 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public IActionResult GetNoteByOwnerId(Guid id)
+        {
+            var note = _notes.FirstOrDefault(n => n.OwnerId == id);
+            return Ok(note);
+        }
+
+        /// <summary>
+        /// Return a note by a given Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpGet("Id/{Id}")]
+        public IActionResult GetNoteById(Guid Id)
+        {
+            var note = _notes.FirstOrDefault(n => n.Id == Id);
+            return Ok(note);
+        }
+
+        /// <summary>
         /// Create a new note
         /// </summary>
         /// <returns></returns>
@@ -38,6 +63,7 @@ namespace NotesApi.Controllers
         {
             _notes.Add(note);
             return Ok(_notes);
+            // return CreatedAtRoute("GetNoteById", new { id = note.Id }, note);
         }
 
 
