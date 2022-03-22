@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace NotesApi
             );
             services.AddControllers();
             services.AddSingleton<INoteCollectionService, NoteCollectionService>();
+            services.AddSingleton<IOwnerCollectionService, OwnerCollectionService>();
            
         }
 

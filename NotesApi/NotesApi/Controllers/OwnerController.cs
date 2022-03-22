@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NotesApi.Models;
+using NotesApi.Services;
 
 namespace NotesApi.Controllers
 {
@@ -12,13 +14,14 @@ namespace NotesApi.Controllers
     [ApiController]
     public class OwnerController : ControllerBase
     {
-        static List<Owner> _owners = new List<Owner>
+        IOwnerCollectionService _ownerService;
+
+        public OwnerController(IOwnerCollectionService ownerService)
         {
-           new Owner{Id=Guid.NewGuid(), Name="Client1"},
-           new Owner{Id=Guid.NewGuid(), Name="Client2"},
-           new Owner{Id=Guid.NewGuid(), Name="Client3"},
-           new Owner{Id=Guid.NewGuid(), Name="Client4"},
-        };
+            _ownerService = ownerService ??
+                throw new ArgumentNullException(nameof(ownerService));
+
+        }
 
         /// <summary>
         /// Get the list of owners
@@ -27,7 +30,7 @@ namespace NotesApi.Controllers
         [HttpGet]
         public IActionResult GetOwner()
         {
-            return Ok(_owners);
+            return Ok(_ownerService.GetAll());
         }
 
         /// <summary>
@@ -44,29 +47,32 @@ namespace NotesApi.Controllers
                 return BadRequest("Owner can't be null");
             }
 
-            int index = _owners.FindIndex(o => o.Id == id);
-            if(index == -1)
+            bool ok = _ownerService.Update(id, owner);
+            if(!ok)
             {
                 return NotFound("Owner not found");
             }
             
-            _owners[index].Id = id;
-            _owners[index] = owner;
-
-            return Ok(_owners);
+            return Ok(_ownerService.GetAll());
 
         }
 
+        /// <summary>
+        /// Delete an owner by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult DeleteOwner(Guid id)
         {
-            int index = _owners.FindIndex(o => o.Id == id);
-            if (index == -1)
+            
+            bool ok = _ownerService.Delete(id);
+            if (!ok)
             {
                 return NotFound("Owner not found");
             }
-            _owners.RemoveAt(index);
-            return Ok(_owners);
+            
+            return Ok(_ownerService.GetAll());
         }
     }
 }

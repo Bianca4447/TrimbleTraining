@@ -25,12 +25,18 @@ namespace NotesApi.Services
 
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
+            int index = _notes.FindIndex(n => n.Id == id);
+            if (index == -1)
+            {
+                return false;
+            }
+            _notes.RemoveAt(index);
+            return true;
         }
 
         public Note Get(Guid id)
         {
-            throw new NotImplementedException();
+            return _notes.FirstOrDefault(n => n.Id == id);
         }
 
         public List<Note> GetAll()
@@ -40,12 +46,19 @@ namespace NotesApi.Services
 
         public List<Note> GetNotesByOwnerId(Guid ownerId)
         {
-            throw new NotImplementedException();
+            return _notes.FindAll(n => n.OwnerId == ownerId);
         }
 
-        public bool Update(Guid id, Note model)
+        public bool Update(Guid id, Note note)
         {
-            throw new NotImplementedException();
+            int index = _notes.FindIndex(n => n.Id == id);
+            if (index == -1)
+            {
+                return false;
+            }
+            note.Id = id;
+            _notes[index] = note;
+            return true;
         }
     }
 }
