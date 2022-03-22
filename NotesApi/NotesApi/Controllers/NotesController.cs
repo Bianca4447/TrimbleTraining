@@ -96,6 +96,11 @@ namespace NotesApi.Controllers
             return Ok(_notes);
         }
 
+        /// <summary>
+        /// Delete a note by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult DeleteNote(Guid id)
         {
@@ -107,6 +112,58 @@ namespace NotesApi.Controllers
             _notes.RemoveAt(index);
             return Ok("Note deleted");
         }
+
+        /// <summary>
+        /// Update a note by id and OwnerId
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="idOwner"></param>
+        /// <param name="note"></param>
+        /// <returns></returns>
+        [HttpPut("{id}, {idOwner}")]
+        public IActionResult UpdateNoteByIdAndOwnerId(Guid id, Guid idOwner, [FromBody] Note note)
+        {
+            if (note == null)
+            {
+                return BadRequest("Note can't be null");
+            }
+            int index = _notes.FindIndex(n => n.Id == id && n.OwnerId == idOwner);
+            if (index == -1)
+            {
+                return CreateNotes(note);
+                //return NotFound("Index not found");
+            }
+            note.Id = id;
+            note.OwnerId = idOwner;
+            _notes[index] = note;
+            return Ok(_notes);
+        }
+
+        /// <summary>
+        /// Delete a note by id and ownerId
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id},{ownerId}")]
+        public IActionResult DeleteNoteByIdAndOwnerId(Guid id, Guid ownerId)
+        {
+            int index = _notes.FindIndex(n => n.Id == id && n.OwnerId == ownerId);
+            if (index == -1)
+            {
+                return NotFound("Note not found");
+            }
+            _notes.RemoveAt(index);
+            return Ok("Note deleted");
+        }
+
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteAllNotesByOwnerId(Guid id)
+        //{
+        //    List<Note> note = new List<Note>();
+            
+        //    _notes.RemoveAll(n => n.OwnerId == id);
+        //    return Ok("Note deleted");
+        //}
 
 
 

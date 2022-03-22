@@ -20,9 +20,52 @@ namespace NotesApi.Controllers
            new Owner{Id=Guid.NewGuid(), Name="Client4"},
         };
 
+        /// <summary>
+        /// Get the list of owners
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetOwner()
         {
+            return Ok(_owners);
+        }
+
+        /// <summary>
+        /// Update an owner by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public IActionResult UpdateOwner(Guid id, [FromBody] Owner owner)
+        {
+            if (owner == null)
+            {
+                return BadRequest("Owner can't be null");
+            }
+
+            int index = _owners.FindIndex(o => o.Id == id);
+            if(index == -1)
+            {
+                return NotFound("Owner not found");
+            }
+            
+            _owners[index].Id = id;
+            _owners[index] = owner;
+
+            return Ok(_owners);
+
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteOwner(Guid id)
+        {
+            int index = _owners.FindIndex(o => o.Id == id);
+            if (index == -1)
+            {
+                return NotFound("Owner not found");
+            }
+            _owners.RemoveAt(index);
             return Ok(_owners);
         }
     }
