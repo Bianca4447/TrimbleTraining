@@ -27,32 +27,32 @@ namespace NotesApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetNotes()
+        public async Task<IActionResult> GetNotes()
         {
-            return Ok(_noteCollectionService.GetAll());
-            
+            return Ok(await _noteCollectionService.GetAll());
+
         }
 
-        /// <summary>
-        /// Return a note by ownerId 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("{id}")]
-        public IActionResult GetNoteByOwnerId(Guid id)
-        {
-            return Ok(_noteCollectionService.GetNotesByOwnerId(id));
-        }
+        ///// <summary>
+        ///// Return a note by ownerId 
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //[HttpGet("{id}")]
+        //public IActionResult GetNoteByOwnerId(Guid id)
+        //{
+        //    return Ok(_noteCollectionService.GetNotesByOwnerId(id));
+        //}
 
         /// <summary>
-        /// Return a note by a given Id
+        /// Return a note by id
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet("Id/{Id}", Name = "GetNote")]
-        public IActionResult GetNoteById(Guid Id)
+        public async Task<IActionResult> GetNoteByIdAsync(Guid Id)
         {
-              return Ok(_noteCollectionService.Get(Id));
+            return Ok(await _noteCollectionService.Get(Id));
         }
 
         /// <summary>
@@ -60,15 +60,19 @@ namespace NotesApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult CreateNotes([FromBody] Note note)
+        public async Task<IActionResult> CreateNotes([FromBody] Note note)
         {
             if (note == null)
             {
                 return BadRequest("Note can't be null");
             }
-            _noteCollectionService.Create(note);
-            //return Ok(_notes);
-            return CreatedAtRoute("GetNote", new { id = note.Id.ToString() }, note);
+            if (note.Id == Guid.Empty)
+            {
+                note.Id = Guid.NewGuid();
+            }
+            await _noteCollectionService.Create(note);
+            
+            return Ok(await _noteCollectionService.GetAll());
         }
 
         /// <summary>
@@ -79,18 +83,18 @@ namespace NotesApi.Controllers
         /// <param name="note"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult UpdateNote(Guid id, [FromBody] Note note)
+        public async Task<IActionResult> UpdateNote(Guid id, [FromBody] Note note)
         {
             if (note == null)
             {
                 return BadRequest("Note can't be null");
             }
-            if(!_noteCollectionService.Update(id, note))
+            if (! await _noteCollectionService.Update(id, note))
             {
-                _noteCollectionService.Create(note);
+                await _noteCollectionService.Create(note);
                 return NotFound("The note don't exist");
             }
-            return Ok(_noteCollectionService.GetAll());
+            return Ok(await _noteCollectionService.GetAll());
         }
 
         /// <summary>
@@ -99,9 +103,9 @@ namespace NotesApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public IActionResult DeleteNote(Guid id)
+        public async Task<IActionResult> DeleteNoteAsync(Guid id)
         {
-            bool ok = _noteCollectionService.Delete(id);
+            bool ok = await _noteCollectionService.Delete(id);
             if (!ok)
             {
                 return NotFound("Note not found");

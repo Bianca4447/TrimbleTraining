@@ -57,5 +57,30 @@ namespace NotesApi.Services
 
             return true;
         }
+
+        Task<bool> ICollection<Owner>.Create(Owner model)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> ICollection<Owner>.Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Owner> ICollection<Owner>.Get(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<Owner>> ICollection<Owner>.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> ICollection<Owner>.Update(Guid id, Owner model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

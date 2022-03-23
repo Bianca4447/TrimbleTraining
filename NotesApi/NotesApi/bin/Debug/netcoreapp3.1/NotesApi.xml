@@ -37,16 +37,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:NotesApi.Controllers.NotesController.GetNoteByOwnerId(System.Guid)">
+        <member name="M:NotesApi.Controllers.NotesController.GetNoteByIdAsync(System.Guid)">
             <summary>
-            Return a note by ownerId 
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NotesApi.Controllers.NotesController.GetNoteById(System.Guid)">
-            <summary>
-            Return a note by a given Id
+            Return a note by id
             </summary>
             <param name="Id"></param>
             <returns></returns>
@@ -66,30 +59,9 @@
             <param name="note"></param>
             <returns></returns>
         </member>
-        <member name="M:NotesApi.Controllers.NotesController.DeleteNote(System.Guid)">
+        <member name="M:NotesApi.Controllers.NotesController.DeleteNoteAsync(System.Guid)">
             <summary>
             Delete a note by id
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NotesApi.Controllers.OwnerController.GetOwner">
-            <summary>
-            Get the list of owners
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NotesApi.Controllers.OwnerController.UpdateOwner(System.Guid,NotesApi.Models.Owner)">
-            <summary>
-            Update an owner by id
-            </summary>
-            <param name="id"></param>
-            <param name="owner"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NotesApi.Controllers.OwnerController.DeleteOwner(System.Guid)">
-            <summary>
-            Delete an owner by id
             </summary>
             <param name="id"></param>
             <returns></returns>

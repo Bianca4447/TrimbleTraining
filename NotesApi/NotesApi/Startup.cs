@@ -13,7 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using NotesApi.Services;
+using NotesApi.Settings;
 
 namespace NotesApi
 {
@@ -37,6 +39,9 @@ namespace NotesApi
 
             }
             );
+            services.Configure<MongoDBSettings>(Configuration.GetSection(nameof(MongoDBSettings)));
+            services.AddSingleton<IMongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
+
             services.AddControllers();
             services.AddSingleton<INoteCollectionService, NoteCollectionService>();
             services.AddSingleton<IOwnerCollectionService, OwnerCollectionService>();
