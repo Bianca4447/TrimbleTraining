@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
 import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,18 +41,20 @@ import { HttpMockApiInterceptor } from './services/http-mock-api.interceptor';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule,
-    MatCardModule,
+    MatSelectModule,
     MatOptionModule,
+    MatCardModule,
     CommonModule, 
-    HttpClientModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
+ 
   ],
   providers: [
     {
