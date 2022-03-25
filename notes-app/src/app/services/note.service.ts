@@ -10,10 +10,10 @@ import { Note } from '../note';
 export default class NoteService {
   
 
-readonly baseUrl= "https://localhost:4200";
+readonly baseUrl= "http://localhost:5001";
 readonly httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type':  'application/json'
   })
 };
 
@@ -47,7 +47,6 @@ getNotes():Observable<Note[]> {
 
 addNoteClick(note: Note){
   let notes= {  
-                id: note.id,
                 title: note.title,
                 description: note.description,
                 category: note.categoryId
