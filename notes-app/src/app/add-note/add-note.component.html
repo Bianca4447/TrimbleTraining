@@ -4,30 +4,30 @@
             <label>Title</label>
               <mat-form-field>
                   <input matInput name="inputNote" placeholder="Enter note" formControlName = "title" required/>
-                  <mat-error *ngIf="titleValid?.invalid && (titleValid?.dirty || titleValid?.touched)" class="alert">
+                  <!-- <mat-error *ngIf="titleValid?.invalid && (titleValid?.dirty || titleValid?.touched)" class="alert">
                     *Title is required.
-                  </mat-error>
+                  </mat-error> -->
               </mat-form-field>
 
               <label>Description</label>
               <mat-form-field>
                   <textarea matInput name="inputDescription" placeholder="Enter description" formControlName = "description" required>
                   </textarea>
-                  <mat-error *ngIf="descriptionValid?.invalid && (descriptionValid?.dirty || descriptionValid?.touched)" class="alert">
+                  <!-- <mat-error *ngIf="descriptionValid?.invalid && (descriptionValid?.dirty || descriptionValid?.touched)" class="alert">
                     *Description is required.
-                  </mat-error>
+                  </mat-error> -->
               </mat-form-field>
             
                 <mat-form-field appearance="fill">
                   <mat-label>Category</mat-label>
-                  <mat-select  name="category" >
+                  <mat-select  formControlName="category" >
                     <mat-option *ngFor="let cat of categories" [value]="cat" >
                       {{cat.name}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="categoryValid?.invalid && (categoryValid?.dirty || categoryValid?.touched)" class="alert">
+                  <!-- <mat-error *ngIf="categoryValid?.invalid && (categoryValid?.dirty || categoryValid?.touched)" class="alert">
                       *Category is required.
-                  </mat-error>
+                  </mat-error> -->
                 </mat-form-field>
             
 

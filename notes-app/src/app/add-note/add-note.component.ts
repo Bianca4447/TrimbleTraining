@@ -19,6 +19,7 @@ export class AddNoteComponent implements OnInit {
   idNote: string;
   category: Category;
   categories: Category[];
+  categorySelect: Category;
 
   notesForm: FormGroup;
  
@@ -54,18 +55,17 @@ export class AddNoteComponent implements OnInit {
           map((notes) => notes.filter((note) => note.id === this.idNote)[0])
         )
         .subscribe((noteToEdit) => {
-          this.category = this.categories.filter(
-            (category) => category.id === noteToEdit.categoryId
-          )[0];
+          this.categorySelect = this.categories.filter(
+            (category) => category.id === noteToEdit.categoryId)[0];
           this.detailNote(noteToEdit);
         });
     } else {
-      this.category = this.categories[0];
+      this.categorySelect = this.categories[0];
       this.detailNote({
         id: Guid.create().toString(),
         title: '',
         description: '',
-        categoryId: '',
+        categoryId: ''
       });
     }
   }
@@ -82,17 +82,7 @@ export class AddNoteComponent implements OnInit {
     return this.notesForm.get('category');
   }
 
-  detailNote(note: Note) {
-    this.notesForm = this.formBuilder.group(
-      {
-          id: note.id,
-          title: [note.title, Validators.required],
-          description: [note.description, Validators.required],
-          category: this.category
-      }
-    );
-  }
-
+  
   addNote(){
     const note: Note = {
       id: this.notesForm.get("id").value,
@@ -108,6 +98,18 @@ export class AddNoteComponent implements OnInit {
       this.noteService.addNoteClick(note);
     }
   }
+
+  detailNote(note: Note) {
+    this.notesForm = this.formBuilder.group(
+      {
+          id: note.id,
+          title: [note.title, Validators.required],
+          description: [note.description, Validators.required],
+          category: this.categorySelect
+      }
+    );
+  }
+
 
  
 

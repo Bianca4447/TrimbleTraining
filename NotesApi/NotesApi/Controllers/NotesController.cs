@@ -14,10 +14,10 @@ namespace NotesApi.Controllers
     public class NotesController : ControllerBase
     {
         INoteCollectionService _noteCollectionService;
-        
+
         public NotesController(INoteCollectionService noteCollectionService)
         {
-            _noteCollectionService = noteCollectionService ?? 
+            _noteCollectionService = noteCollectionService ??
                 throw new ArgumentNullException(nameof(noteCollectionService));
 
         }
@@ -71,7 +71,7 @@ namespace NotesApi.Controllers
                 note.Id = Guid.NewGuid();
             }
             await _noteCollectionService.Create(note);
-            
+
             return Ok(await _noteCollectionService.GetAll());
         }
 
@@ -82,19 +82,23 @@ namespace NotesApi.Controllers
         /// <param name="id"></param>
         /// <param name="note"></param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> UpdateNote(Guid id, [FromBody] Note note)
         {
             if (note == null)
             {
                 return BadRequest("Note can't be null");
             }
-            if (! await _noteCollectionService.Update(id, note))
+            if(await _noteCollectionService.Update(id, note))
             {
-                await _noteCollectionService.Create(note);
-                return NotFound("The note don't exist");
+                return Ok();
             }
-            return Ok(await _noteCollectionService.GetAll());
+            //if (! await _noteCollectionService.Update(id, note))
+            //{
+               
+            //    return NotFound("The note don't exist");
+            //}
+            return NoContent();
         }
 
         /// <summary>
@@ -110,7 +114,7 @@ namespace NotesApi.Controllers
             {
                 return NotFound("Note not found");
             }
-            return Ok("Note deleted");
+            return Ok(await _noteCollectionService.GetAll());
         }
 
         ///// <summary>

@@ -17,16 +17,15 @@ readonly httpOptions = {
   })
 };
 
+readonly headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
-constructor(private httpClient: HttpClient, private router: Router) { }
+constructor(private httpClient: HttpClient, private router: Router) { 
+}
 
 
 
 getNotes():Observable<Note[]> {
-  return this.httpClient.get<Note[]>(
-    this.baseUrl+'/notes', 
-    this.httpOptions
-    );
+  return this.httpClient.get<Note[]>(this.baseUrl+'/notes', this.httpOptions);
 }
 
 // getSearch(wordSearch: string):Observable<Note[]> {
@@ -46,26 +45,32 @@ getNotes():Observable<Note[]> {
 // }
 
 addNoteClick(note: Note){
-  let notes= {  
-                title: note.title,
-                description: note.description,
-                category: note.categoryId
+  // let notes= {  
+  //               title: note.title,
+  //               description: note.description,
+  //               category: note.categoryId
                 
-              }
-  return  this.httpClient.post(this.baseUrl+"/notes", notes, this.httpOptions);
+  //             }
+          
+  return  this.httpClient.post(this.baseUrl+"/notes", note).subscribe(
+    response => {
+      this.router.navigate(['notes'])
+    }
+  );
 }
 
 deleteNote(id: string) {
+
   return this.httpClient.delete(this.baseUrl + '/notes/' + id);
+ 
 }
 
 editNote(note: Note){
-  return this.httpClient.put(this.baseUrl + "/notes?id="+ note.id, note).subscribe(
-    response => {
-      this.router.navigate(['notes']);
-    },
-    (e:HttpErrorResponse) => console.log(e)
-  );
+  return this.httpClient.put(this.baseUrl + "/notes?id="+ note.id, note).subscribe(response => {
+      this.router.navigate(['notes'])
+  })
+
+
 }
 
 }

@@ -15,7 +15,7 @@ export class FilterServiceService {
     {name:'Doing', id:'3'}
   ]
 
-  readonly baseUrl= "https://localhost:4200";
+  readonly baseUrl= "http://localhost:5001";
   
   readonly httpOptions = {
   headers: new HttpHeaders({
